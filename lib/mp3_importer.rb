@@ -1,4 +1,3 @@
-require 'pry'
 
 class MP3Importer
 
@@ -6,12 +5,19 @@ class MP3Importer
 
   def initialize(path)
     @path = path
-    @files = []
+    Dir.chdir(path + "/") do
+      @files = Dir.glob("*.mp3")
+    end
   end
 
+
   def import
-    @files = Dir["/path/to/search/*"]
-    binding.pry
+    @files.each do |filename|
+      song = Song.new_by_filename(filename)
+      artist = Artist.find_or_create_by_name(song.artist.name)
+      artist.songs << song
+      Artist.all << artist if !Artist.all.any? { |a| a == artist }
+    end
   end
 
 end
