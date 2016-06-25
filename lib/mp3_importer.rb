@@ -15,8 +15,8 @@ class MP3Importer
     @files.each do |filename|
       song = Song.new_by_filename(filename)
       artist = Artist.find_or_create_by_name(song.artist.name)
-      artist.songs << song
-      Artist.all << artist if !Artist.all.any? { |a| a == artist }
+      artist.add_song(song)
+      Artist.add_artist(artist) if !Artist.all.any? { |a| a == artist }
     end
   end
 

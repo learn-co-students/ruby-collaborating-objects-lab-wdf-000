@@ -1,6 +1,7 @@
 class Artist
 
-  attr_accessor :name, :songs
+  attr_accessor :name
+  attr_reader :songs
 
   @@all = []   # Array of Artist object
 
@@ -9,12 +10,16 @@ class Artist
     @songs = []
   end
 
-  def self.all=(artists)  # Array of Artist object
-    @@all = artists
-  end
+  # def self.all=(artists)  # Array of Artist object
+  #   @@all = artists
+  # end
 
   def self.all
-    @@all
+    @@all.dup.freeze
+  end
+
+  def self.add_artist(artist)
+    @@all << artist
   end
 
   def add_song(song)   # Song object
