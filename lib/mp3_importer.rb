@@ -1,24 +1,23 @@
 require 'pry'
 
 class MP3Importer
-	attr_accessor :path
+	attr_reader :path
 
 	def initialize(path)
 		@path = path
 	end
 
-
 	def files
-		Dir["#{path}/*.mp3"].collect {|file| file.split("mp3s/")[1]}
+		# binding.pry
+		Dir.entries(path).delete_if {|file| file[0] == "."}
 	end
 
 	def import
-		self.files.each do |filename|
-			Song.new_by_filename(filename)
+		# binding.pry
+		files.each do |filename|
+			arr = filename.split(" - ")
+			Artist.find_or_create_by_name(arr[0]).add_song(Song.new(arr[1]))
 		end
 	end
-
-
-
 end
 
