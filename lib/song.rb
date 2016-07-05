@@ -9,7 +9,7 @@ class Song
     temp = filename.split(/ - |.mp3/)
     song = self.new(temp[1])
     song.artist = Artist.find_or_create_by_name(temp[0])
-    song.artist.add_song(song)
+    song.artist.add_song(song) #what if song already exists?
     song
   end
 end
