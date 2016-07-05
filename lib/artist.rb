@@ -9,7 +9,6 @@ class Artist
     @name = name
     # create a song list for every artist instance
     @songs = []
-    # @@all << self
   end
 
   def add_song(song_object)
