@@ -8,6 +8,7 @@ class Artist
   end
 
   def add_song(song)
+    raise "Song already exists!" if @songs.include?(song)
     @songs << song
   end
 

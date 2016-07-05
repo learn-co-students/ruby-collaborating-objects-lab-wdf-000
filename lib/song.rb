@@ -6,10 +6,14 @@ class Song
   end
 
   def self.new_by_filename(filename)
-    temp = filename.split(/ - |.mp3/)
-    song = self.new(temp[1])
-    song.artist = Artist.find_or_create_by_name(temp[0])
-    song.artist.add_song(song) #what if song already exists?
+    artist, song = filename.split(/ - |.mp3/)
+    song = self.new(song)
+    song.artist_name = artist
     song
+  end
+
+  def artist_name=(name)
+    self.artist = Artist.find_or_create_by_name(name)
+    artist.add_song(self)
   end
 end
