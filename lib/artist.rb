@@ -22,9 +22,9 @@ end
 
 
 def self.find_or_create_by_name(the_name)
-  name = self.all.detect {|a| a.name == the_name}
-  if name
-     name
+  artist = self.all.detect {|a| a.name == the_name}
+  if artist
+     artist
   else
     artist = self.new(the_name)
     artist.save
