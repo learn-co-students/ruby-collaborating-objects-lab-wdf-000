@@ -7,6 +7,10 @@ class MP3Importer
     @files = []
   end
 
+#Either #files or #import should notify the user
+#if there are no music files (mp3-files to be exact)
+#in the @path directory
+
   def files
     get_back_here = Dir.pwd
     Dir.chdir(@path)
@@ -16,8 +20,6 @@ class MP3Importer
   end
 
   def import
-      files.each do |file|
-      Song.new_by_filename(file)
-    end
+      files.each {|file|  Song.new_by_filename(file)}
   end
 end
