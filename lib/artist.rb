@@ -31,7 +31,7 @@ attr_accessor :name
 	def self.find_or_create_by_name(name)
 		# @@all.detect {|artist| artist.name == name } || self.new(name).save
 
-		if artist_name = @@all.detect {|artist| artist.name == name } 
+		if artist_name = all.detect {|artist| artist.name == name } 
 			artist_name
 		else
 			self.new(name).save
