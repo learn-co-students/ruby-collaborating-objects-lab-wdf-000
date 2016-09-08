@@ -10,7 +10,8 @@ class MP3Importer
   end
 
 #cheated and changed spec.  why no worky?
+#edit: reverted mp3_importer_spec, "save" added to Artist initialize, pr
   def import
-    self.files.each {|file| Song.new_by_filename(file)}
+    files.each {|file| Song.new_by_filename(file)}
   end
 end
